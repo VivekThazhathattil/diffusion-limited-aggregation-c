@@ -18,7 +18,7 @@ particle_t* init_particle(winsize_t);
 int is_particle_at_freeze_point(particle_t*, state_t*);
 int is_particle_at_floor(particle_t*, state_t*);
 void kill_particle(particle_t*);
-void set_rain_velocity(particle_t*);
+void adjust_rain_velocity(particle_t*, state_t*);
 int within_bounds(int, int, state_t*);
 
 #endif /* PARTICLE_H */

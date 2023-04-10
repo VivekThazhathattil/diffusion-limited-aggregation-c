@@ -1,3 +1,5 @@
+/* Diffusion Limited Aggregation */
+
 #include <unistd.h>
 #include <stdio.h>
 #include <time.h>
@@ -24,7 +26,7 @@ int main(void){
          is_particle_at_floor(particle, state)){
         int chosen_color = 0;
         if(is_particle_at_floor(particle, state))
-          chosen_color = rand()%NUM_COLORS;
+          chosen_color = random_num(NUM_COLORS);
         else
           chosen_color = is_particle_at_freeze_point(particle, state) - 1;
         freeze_particle(particle);
@@ -35,6 +37,7 @@ int main(void){
         break;
       }
       else{
+        adjust_rain_velocity(particle, state);
         move_particle(particle);
       }
     }

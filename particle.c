@@ -12,7 +12,7 @@ void freeze_particle(particle_t* p){
 
 particle_t* init_particle(winsize_t win){
   particle_t* p = (particle_t*) malloc(sizeof(particle_t));
-  set_rain_velocity(p);
+  adjust_rain_velocity(p, NULL);
   /* initially our particle is at the top of the screen */
   p->pos.y = 1; 
   p->pos.x = random_num_within_range(1, win.cols);
@@ -48,7 +48,17 @@ void kill_particle(particle_t* p){
   free(p);
 }
 
-void set_rain_velocity(particle_t* p){
-  p->vel.x = 0;
+void adjust_rain_velocity(particle_t* p, state_t* s){
   p->vel.y = 1;
+  if(s == NULL){
+    p->vel.x = 0;
+  }
+  else{
+    if(p->pos.x == 0)
+      p->vel.x = random_num(2);
+    else if(p->pos.x == s->cols-1)
+      p->vel.x = -random_num(2);
+    else
+      p->vel.x = random_num(3) - 1;
+  }
 }

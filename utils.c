@@ -9,6 +9,12 @@ int random_num_within_range(int lo, int hi){
   return rand()%(hi - lo) + lo;
 }
 
+int random_num(int hi){
+  if(hi == 0)
+    return 0;
+  return rand()%hi;
+}
+
 char* get_specific_color(int num){
   char* colors[NUM_COLORS] = {RED, GRN, YEL, BLU, MAG, CYN, WHT};
   return colors[num%7];
