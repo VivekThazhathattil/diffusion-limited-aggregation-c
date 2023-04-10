@@ -1,0 +1,10 @@
+rm -rf obj;
+mkdir obj;
+cd obj;
+gcc -c -g3 ../draw.c;
+gcc -c -g3 ../utils.c;
+gcc -c -g3 ../particle.c;
+gcc -c -g3 ../state.c;
+gcc -c -g3 ../main.c;
+gcc draw.o utils.o state.o particle.o main.o -o ../main;
+cd -;
