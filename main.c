@@ -12,7 +12,7 @@
 
 int main(int argc, char **argv){
   srand(time(NULL));
-  const int num_particles = 10000;
+  const int num_particles = 5000;
   char* blk_sym = "■";
   int wind = get_rvalue("-w", argc, argv, NUM_WINDS);
   int random_wind = get_rvalue("-r", argc, argv, 2);

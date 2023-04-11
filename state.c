@@ -15,8 +15,13 @@ void update_state(int row_index, int col_index, state_t* s, int chosen_color){
 }
 
 void delete_state(state_t* s){
-  for(int i = 0; i < s->rows; ++i)
-    free(s->mat[i]);
-  free(s->mat);
+  if(s == NULL)
+    return;
+  for(int i = 0; i < s->rows; ++i){
+    if(s->mat[i] != NULL)
+      free(s->mat[i]);
+  }
+  if(s->mat != NULL) 
+    free(s->mat);
   free(s);
 }

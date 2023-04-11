@@ -48,7 +48,8 @@ int is_particle_at_floor(particle_t* p, state_t* s){
 }
 
 void kill_particle(particle_t* p){
-  free(p);
+  if(p != NULL)
+    free(p);
 }
 
 void adjust_rain_velocity(particle_t* p, state_t* s, int wind, int random_wind){
