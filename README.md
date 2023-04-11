@@ -24,5 +24,6 @@ https://user-images.githubusercontent.com/63693789/230949925-ee93bfbd-0334-4f98-
 
 * Example-2: `./main -w 2` will create something similar to this:
 
+https://user-images.githubusercontent.com/63693789/231085285-23cd60cb-274d-4a00-ae28-0a75a2fa1c42.mp4
 
 * I've written the code as legibly as possible. If you notice any inconsistencies or errors, please raise an issue. Thank you!
