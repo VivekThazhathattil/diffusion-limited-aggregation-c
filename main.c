@@ -10,17 +10,18 @@
 #include "particle.h"
 #include "draw.h"
 
-int main(void){
+int main(int argc, char **argv){
   srand(time(NULL));
   const int num_particles = 10000;
   char* blk_sym = "■";
+  int wind = get_rvalue("-w", argc, argv, NUM_WINDS);
   winsize_t win = get_win_size();
   state_t* state = init_state(win.rows, win.cols);
 
   system("clear");
 
   for(int i = 0; i < num_particles; ++i){
-    particle_t* particle = init_particle(win);
+    particle_t* particle = init_particle(win, wind);
     while(1){
       if(is_particle_at_freeze_point(particle, state) || 
          is_particle_at_floor(particle, state)){
@@ -37,8 +38,8 @@ int main(void){
         break;
       }
       else{
-        adjust_rain_velocity(particle, state);
-        move_particle(particle);
+        adjust_rain_velocity(particle, state, wind);
+        move_particle(particle, state);
       }
     }
   }

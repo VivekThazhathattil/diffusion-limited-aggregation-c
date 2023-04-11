@@ -1,7 +1,10 @@
 #include "particle.h"
 
-void move_particle(particle_t* p){
+void move_particle(particle_t* p, state_t* s){
   p->pos.x += p->vel.x;
+  p->pos.x %= s->cols;
+  if(p->pos.x < 0)
+    p->pos.x = s->cols + p->pos.x;
   p->pos.y += p->vel.y;
 }
 
@@ -10,9 +13,9 @@ void freeze_particle(particle_t* p){
   p->vel.y = 0;
 }
 
-particle_t* init_particle(winsize_t win){
+particle_t* init_particle(winsize_t win, int wind){
   particle_t* p = (particle_t*) malloc(sizeof(particle_t));
-  adjust_rain_velocity(p, NULL);
+  adjust_rain_velocity(p, NULL, wind);
   /* initially our particle is at the top of the screen */
   p->pos.y = 1; 
   p->pos.x = random_num_within_range(1, win.cols);
@@ -48,10 +51,25 @@ void kill_particle(particle_t* p){
   free(p);
 }
 
-void adjust_rain_velocity(particle_t* p, state_t* s){
+void adjust_rain_velocity(particle_t* p, state_t* s, int wind){
   p->vel.y = 1;
+  switch(wind){
+    case NO_WIND:
+      p->vel.x = NO_WIND_STRENGTH;
+      break;
+    case BREEZE:
+      p->vel.x = random_num(BREEZE_STRENGTH) - BREEZE_STRENGTH/2;
+      break;
+    case STRONG_WIND:
+      p->vel.x = random_num(STRONG_WIND_STRENGTH) - STRONG_WIND_STRENGTH/2;
+      break;
+    default:
+      p->vel.x = NO_WIND_STRENGTH;
+  }
+  /* Aperiodic boundary conditions */
+  /*
   if(s == NULL){
-    p->vel.x = 0;
+    p->vel.x = 5;
   }
   else{
     if(p->pos.x == 0)
@@ -61,4 +79,5 @@ void adjust_rain_velocity(particle_t* p, state_t* s){
     else
       p->vel.x = random_num(3) - 1;
   }
+  */
 }

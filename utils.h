@@ -15,5 +15,6 @@ int random_num_within_range(int, int);
 char* get_specific_color(int);
 char* get_random_color(void);
 int random_num(int);
+int get_rvalue(char*, int, char**, int);
 
 #endif /* UTILS_H */
