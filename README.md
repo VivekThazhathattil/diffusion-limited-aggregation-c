@@ -18,11 +18,11 @@ Diffusion Limited Aggregation test with C. ASCII display.
 
 * Adjust wind with `-w` flag. It can take the values 0, 1, or 2, corresponding to no wind, breeze and high wind respectively.
 
-* Example-1: `./main -w 0` will create something similar to this:
+### Example-1: `./main -w 0` will create something similar to this:
 
 https://user-images.githubusercontent.com/63693789/230949925-ee93bfbd-0334-4f98-9528-c982b37376c4.mp4
 
-* Example-2: `./main -w 2` will create something similar to this:
+### Example-2: `./main -w 2` will create something similar to this:
 
 https://user-images.githubusercontent.com/63693789/231085285-23cd60cb-274d-4a00-ae28-0a75a2fa1c42.mp4
 
