@@ -2,6 +2,7 @@
 #define STATE_H
 
 #include <stdlib.h>
+#include "colors.h"
 
 typedef struct STATE_S{
   int rows, cols;

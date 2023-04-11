@@ -11,7 +11,10 @@ state_t* init_state(int rows, int cols){
 }
 
 void update_state(int row_index, int col_index, state_t* s, int chosen_color){
-  s->mat[row_index][col_index] = chosen_color;
+  if(chosen_color == 0 && s->mat[row_index][col_index] == NUM_COLORS)
+    s->mat[row_index][col_index] = 0;
+  else
+    s->mat[row_index][col_index] = chosen_color;
 }
 
 void delete_state(state_t* s){
