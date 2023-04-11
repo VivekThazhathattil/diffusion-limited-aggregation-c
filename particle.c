@@ -13,9 +13,9 @@ void freeze_particle(particle_t* p){
   p->vel.y = 0;
 }
 
-particle_t* init_particle(winsize_t win, int wind){
+particle_t* init_particle(winsize_t win, int wind, int random_wind){
   particle_t* p = (particle_t*) malloc(sizeof(particle_t));
-  adjust_rain_velocity(p, NULL, wind);
+  adjust_rain_velocity(p, NULL, wind, random_wind);
   /* initially our particle is at the top of the screen */
   p->pos.y = 1; 
   p->pos.x = random_num_within_range(1, win.cols);
@@ -51,17 +51,23 @@ void kill_particle(particle_t* p){
   free(p);
 }
 
-void adjust_rain_velocity(particle_t* p, state_t* s, int wind){
+void adjust_rain_velocity(particle_t* p, state_t* s, int wind, int random_wind){
   p->vel.y = 1;
   switch(wind){
     case NO_WIND:
       p->vel.x = NO_WIND_STRENGTH;
       break;
     case BREEZE:
-      p->vel.x = random_num(BREEZE_STRENGTH) - BREEZE_STRENGTH/2;
+      if(random_wind)
+        p->vel.x = random_num(BREEZE_STRENGTH) - BREEZE_STRENGTH/2;
+      else
+        p->vel.x = BREEZE_STRENGTH;
       break;
     case STRONG_WIND:
-      p->vel.x = random_num(STRONG_WIND_STRENGTH) - STRONG_WIND_STRENGTH/2;
+      if(random_wind)
+        p->vel.x = random_num(STRONG_WIND_STRENGTH) - STRONG_WIND_STRENGTH/2;
+      else
+        p->vel.x = STRONG_WIND_STRENGTH;
       break;
     default:
       p->vel.x = NO_WIND_STRENGTH;

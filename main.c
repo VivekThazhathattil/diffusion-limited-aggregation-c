@@ -15,13 +15,14 @@ int main(int argc, char **argv){
   const int num_particles = 10000;
   char* blk_sym = "■";
   int wind = get_rvalue("-w", argc, argv, NUM_WINDS);
+  int random_wind = get_rvalue("-r", argc, argv, 2);
   winsize_t win = get_win_size();
   state_t* state = init_state(win.rows, win.cols);
 
   system("clear");
 
   for(int i = 0; i < num_particles; ++i){
-    particle_t* particle = init_particle(win, wind);
+    particle_t* particle = init_particle(win, wind, random_wind);
     while(1){
       if(is_particle_at_freeze_point(particle, state) || 
          is_particle_at_floor(particle, state)){
@@ -38,7 +39,7 @@ int main(int argc, char **argv){
         break;
       }
       else{
-        adjust_rain_velocity(particle, state, wind);
+        adjust_rain_velocity(particle, state, wind, random_wind);
         move_particle(particle, state);
       }
     }
